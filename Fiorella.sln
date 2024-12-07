@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scr", "scr", "{7FB6876E-BA35-4AC3-9E7F-3E30CEF085CA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1AA0B627-9936-4027-921C-1A5CBC4950CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiorella.API", "Fiorella.API\Fiorella.API.csproj", "{AE629811-670F-417D-AC8B-97B2107F5339}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiorella.Domain", "Fiorella.Core\Fiorella.Domain.csproj", "{83F0AC3E-F392-431A-9B33-2AF354ED203D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiorella.Persistence", "Fiorella.Business\Fiorella.Persistence.csproj", "{C1E48943-F705-4247-A4F7-383AF4336E7E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{8A3D7EE6-E2AE-437E-9420-01D81C2A9D4A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{1E27B719-3153-4F3D-9E0B-1B1302882875}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{36306D18-4540-4610-82CB-32AD60637836}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiorella.Appilication", "src\Core\Fiorella.Appilication\Fiorella.Appilication.csproj", "{CC9A254B-4B20-4C52-85BD-CFD768A5E251}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE629811-670F-417D-AC8B-97B2107F5339}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE629811-670F-417D-AC8B-97B2107F5339}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE629811-670F-417D-AC8B-97B2107F5339}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE629811-670F-417D-AC8B-97B2107F5339}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83F0AC3E-F392-431A-9B33-2AF354ED203D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83F0AC3E-F392-431A-9B33-2AF354ED203D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83F0AC3E-F392-431A-9B33-2AF354ED203D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83F0AC3E-F392-431A-9B33-2AF354ED203D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1E48943-F705-4247-A4F7-383AF4336E7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1E48943-F705-4247-A4F7-383AF4336E7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1E48943-F705-4247-A4F7-383AF4336E7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1E48943-F705-4247-A4F7-383AF4336E7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC9A254B-4B20-4C52-85BD-CFD768A5E251}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC9A254B-4B20-4C52-85BD-CFD768A5E251}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC9A254B-4B20-4C52-85BD-CFD768A5E251}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC9A254B-4B20-4C52-85BD-CFD768A5E251}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AE629811-670F-417D-AC8B-97B2107F5339} = {36306D18-4540-4610-82CB-32AD60637836}
+		{83F0AC3E-F392-431A-9B33-2AF354ED203D} = {8A3D7EE6-E2AE-437E-9420-01D81C2A9D4A}
+		{C1E48943-F705-4247-A4F7-383AF4336E7E} = {1E27B719-3153-4F3D-9E0B-1B1302882875}
+		{8A3D7EE6-E2AE-437E-9420-01D81C2A9D4A} = {7FB6876E-BA35-4AC3-9E7F-3E30CEF085CA}
+		{1E27B719-3153-4F3D-9E0B-1B1302882875} = {7FB6876E-BA35-4AC3-9E7F-3E30CEF085CA}
+		{36306D18-4540-4610-82CB-32AD60637836} = {7FB6876E-BA35-4AC3-9E7F-3E30CEF085CA}
+		{CC9A254B-4B20-4C52-85BD-CFD768A5E251} = {8A3D7EE6-E2AE-437E-9420-01D81C2A9D4A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3C3222FD-2D00-490F-9DC3-91CBFA2E91A2}
+	EndGlobalSection
+EndGlobal
