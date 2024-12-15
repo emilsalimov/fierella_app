@@ -1,39 +1,26 @@
 ﻿using Fiorella.Appilication.Abstraction.Repository;
 using Fiorella.Domain.Entities;
+using Fiorella.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fiorella.Persistence.Implementation.Repositories;
 public class WriteRepository<T> : IWriteRepository<T> where T : BaseEntity, new()
 {
-    public DbSet<T> Table => throw new NotImplementedException();
-
-    public Task AddAsync(T entity)
+    private readonly AppDbContex _context;
+    public DbSet<T> Table => _context.Set<T>();
+    public WriteRepository(AppDbContex context)
     {
-        throw new NotImplementedException();
+        _context = context;
     }
+    public async Task AddAsync(T entity)=> await Table.AddAsync(entity);
+    
+    public async Task AddRangeAsync(ICollection<T> entities)=>await Table.AddRangeAsync(entities);
 
-    public Task AddRangeAsync(ICollection<T> entity)
-    {
-        throw new NotImplementedException();
-    }
+    public void Remove(T entity)=>Table.Remove(entity);
 
-    public void Remove(T entity)
-    {
-        throw new NotImplementedException();
-    }
+    public void RemoveRange(ICollection<T> entities)=>Table.RemoveRange(entities);
 
-    public void RemoveRange(ICollection<T> entities)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task SaveChangeAsync()
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Update(T entity)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task SaveChangeAsync()=>await _context.SaveChangesAsync();
+    
+    public void Update(T entity)=>Table.Update(entity);
 }

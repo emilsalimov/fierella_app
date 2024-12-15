@@ -13,29 +13,53 @@ public class ReadRepository<T> : IReadRepository<T> where T : BaseEntity, new()
     {
         _context = context;
     }
-    
+
     public IQueryable<T> GetAll(bool isTracking = true, params string[] includes)
     {
-        throw new NotImplementedException();
+        var query = Table.AsQueryable();
+        foreach (var include in includes)
+        {
+            query.Include(include);
+        }
+        return isTracking ? query : query.AsNoTracking();
+  }
+
+    public IQueryable<T> GetAllExpression(Expression<Func<T, bool>> expression,
+                                          int take,
+                                          int skip,
+                                          bool isTracking = true,
+                                          params string[] includes)
+    {
+        var query = Table.Where(expression).Skip(skip).Take(take).AsQueryable();
+        foreach (var include in includes)
+        {
+            query.Include(include);
+        }
+        return isTracking ? query : query.AsNoTracking();
     }
 
-    public IQueryable<T> GetAllExpression(Expression<Func<T, bool>> expression, int take, int skip, bool isTracking = true, params string[] includes)
+    public IQueryable<T> GetAllFilteredOrderBy(Expression<Func<T, bool>> expression,
+                                               int take,
+                                               int skip,
+                                               Expression<Func<T, object>> expressionOrder,
+                                               bool isOrdered = true,
+                                               bool isTracking = true,
+                                               params string[] includes)
     {
-        throw new NotImplementedException();
+        var query = Table.Where(expression).AsQueryable();
+        query = isOrdered ? query.OrderBy(expressionOrder) : query.OrderByDescending(expressionOrder);
+        query=query.Skip(skip).Take(take);
+        foreach (var include in includes)
+        {
+            query.Include(include);
+        }
+        return isTracking ? query : query.AsNoTracking();
     }
 
-    public IQueryable<T> GetAllFilteredOrderBy(Expression<Func<T, bool>> expression, int take, int skip, Expression<Func<T, object>> expressionOrder, bool isOrdered = true, bool isTracking = true, params string[] includes)
+    public async Task<T?> GetByExpressionAsync(Expression<Func<T, bool>> expression, bool isTracking = true)
     {
-        throw new NotImplementedException();
+        var query = isTracking ? Table : Table.AsNoTracking().AsQueryable();
+        return await query.FirstOrDefaultAsync(expression);
     }
-
-    public Task<T> GetByExpression(Expression<Func<T, bool>> expression)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<T> GetByIdAsync(string Id)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task<T?> GetByIdAsync(string Id)=>await Table.FindAsync(Id);
 }
