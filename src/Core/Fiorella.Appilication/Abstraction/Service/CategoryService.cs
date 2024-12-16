@@ -1,5 +1,7 @@
 ﻿using Fiorella.Appilication.Abstraction.Repository;
 using Fiorella.Appilication.DTOs.CategoryDTOs;
+using Fiorella.Domain.Entities;
+using System.Runtime.Serialization;
 
 namespace Fiorella.Appilication.Abstraction.Service;
 
@@ -14,9 +16,14 @@ public class CategoryService : ICategoryService
         _readRepository = _readRepository;
         _writeRepository = _writeRepository;
     }
-    public Task CreateAsync(CategoryCreateDto categoryCreateDto)
+    public async Task CreateAsync(CategoryCreateDto categoryCreateDto)
     {
-        throw new NotImplementedException();
+        Category? dbCategory = await _readRepository
+            .GetByExpressionAsync(c => c.Name.ToLower().Equals(categoryCreateDto.name.ToLower()));
+        if (dbCategory is not null) 
+        {
+            throw new DublicatedException("Dublicated Category name !");
+        }
     }
 
     public override bool Equals(object? obj)
@@ -42,5 +49,25 @@ public class CategoryService : ICategoryService
     public override string? ToString()
     {
         return base.ToString();
+    }
+}
+
+[Serializable]
+internal class DublicatedException : Exception
+{
+    public DublicatedException()
+    {
+    }
+
+    public DublicatedException(string? message) : base(message)
+    {
+    }
+
+    public DublicatedException(string? message, Exception? innerException) : base(message, innerException)
+    {
+    }
+
+    protected DublicatedException(SerializationInfo info, StreamingContext context) : base(info, context)
+    {
     }
 }

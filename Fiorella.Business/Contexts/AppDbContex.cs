@@ -1,5 +1,5 @@
 ﻿using Fiorella.Domain.Entities;
-using Fiorella.Persistence.Contexts.Configurations;
+using Fiorella.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
