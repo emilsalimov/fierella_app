@@ -1,11 +1,27 @@
+using AutoMapper;
+using Fiorella.Appilication.Validators.CategoryValidators;
 using Fiorella.Persistence.Contexts;
+using Fiorella.Persistence.MapperProfiles;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddFluentValidationClientsideAdapters();
+builder.Services.AddValidatorsFromAssemblyContaining(typeof(CategoryCreateDtoValidator));
+//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+var mapperConfig = new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile<CategoryProfile>();
+});
+IMapper mapper = mapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
 builder.Services.AddDbContext<AppDbContex>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
